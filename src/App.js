@@ -7,19 +7,23 @@ import Checkout from './containers/Checkout/Checkout';
 import Orders from './containers/Orders/Orders';
 
 class App extends Component {
-  render () {
-    return (
-      <div>
-        <Layout>
-          <Switch>
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/orders" component={Orders} />
-            <Route path="/" exact component={BurgerBuilder} />
-          </Switch>
-        </Layout>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<Layout>
+					<Switch>
+						<Route path='/checkout' render={props => <Checkout {...props} />} />
+						<Route path='/orders' component={Orders} />
+						<Route
+							path='/'
+							exact
+							render={props => <BurgerBuilder {...props} />}
+						/>
+					</Switch>
+				</Layout>
+			</div>
+		);
+	}
 }
 
 export default App;
