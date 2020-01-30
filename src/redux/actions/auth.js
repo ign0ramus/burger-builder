@@ -47,7 +47,7 @@ export const auth = (email, password, isSignUp) => dispatch => {
 		});
 };
 
-const logout = () => ({
+export const logout = () => ({
 	type: AUTH_LOGOUT,
 });
 
