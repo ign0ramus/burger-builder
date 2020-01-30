@@ -14,6 +14,7 @@ import {
 	purchaseInit,
 } from '../../redux/actions';
 import axios from '../../axios-orders';
+import { Redirect } from 'react-router-dom';
 
 class BurgerBuilder extends Component {
 	state = {
@@ -49,6 +50,9 @@ class BurgerBuilder extends Component {
 	};
 
 	render() {
+		if (!this.props.isAuth) {
+			return <Redirect to='/auth' />;
+		}
 		const disabledInfo = {
 			...this.props.ings,
 		};
@@ -104,6 +108,7 @@ const mapStateToProps = state => {
 		ings: state.burgerBuilder.ingredients,
 		totalPrice: state.burgerBuilder.totalPrice,
 		error: state.burgerBuilder.error,
+		isAuth: state.auth.token !== null,
 	};
 };
 

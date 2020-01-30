@@ -28,10 +28,10 @@ const purchaseStart = () => ({
 	type: PURCHASE_START,
 });
 
-export const purchase = data => dispatch => {
+export const purchase = data => (dispatch, getState) => {
 	dispatch(purchaseStart());
 	axios
-		.post('/orders.json', data)
+		.post('/orders.json?auth=' + getState().auth.token, data)
 		.then(response => {
 			dispatch(purchaseSuccess(response.data.name, data));
 		})
@@ -62,10 +62,10 @@ const getOrdersStart = () => ({
 	type: GET_ORDERS_START,
 });
 
-export const getOrders = () => dispatch => {
+export const getOrders = () => (dispatch, getState) => {
 	dispatch(getOrdersStart());
 	axios
-		.get('/orders.json')
+		.get('/orders.json?auth=' + getState().auth.token)
 		.then(res => {
 			const fetchedOrders = [];
 			for (let key in res.data) {

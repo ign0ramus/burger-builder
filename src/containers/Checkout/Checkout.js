@@ -18,6 +18,10 @@ class Checkout extends Component {
 			return <Redirect to='/' />;
 		}
 
+		if (!this.props.isAuth) {
+			return <Redirect to='/auth' />;
+		}
+
 		return (
 			<React.Fragment>
 				<CheckoutSummary
@@ -38,6 +42,7 @@ const mapStateToProps = state => {
 	return {
 		ings: state.burgerBuilder.ingredients,
 		purchased: state.order.purchased,
+		isAuth: state.auth.token !== null,
 	};
 };
 
