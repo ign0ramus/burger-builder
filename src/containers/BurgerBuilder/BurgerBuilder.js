@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import Burger from '../../components/Burger/Burger';
@@ -14,7 +15,7 @@ import {
 	purchaseInit,
 } from '../../redux/actions';
 import axios from '../../axios-orders';
-import { Redirect } from 'react-router-dom';
+import classes from './BurgerBuilder.css';
 
 class BurgerBuilder extends Component {
 	state = {
@@ -97,7 +98,7 @@ class BurgerBuilder extends Component {
 				>
 					{orderSummary}
 				</Modal>
-				{burger}
+				<div className={classes.Container}>{burger}</div>
 			</Aux>
 		);
 	}

@@ -5,11 +5,14 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = ({ isAuth }) => (
 	<ul className={classes.NavigationItems}>
-		<NavigationItem link='/' exact>
-			Burger Builder
-		</NavigationItem>
-
-		{isAuth && <NavigationItem link='/orders'>Orders</NavigationItem>}
+		{isAuth && (
+			<React.Fragment>
+				<NavigationItem link='/' exact>
+					Burger Builder
+				</NavigationItem>
+				<NavigationItem link='/orders'>Orders</NavigationItem>
+			</React.Fragment>
+		)}
 		{isAuth ? (
 			<NavigationItem link='/logout'>Logout</NavigationItem>
 		) : (
