@@ -4,7 +4,7 @@ import {
 	AUTH_FAIL,
 	AUTH_LOGOUT,
 } from '../actions/actionTypes';
-import { updateObject } from '../utility';
+import { updateObject } from '../../helpers/updateObject';
 
 const initialState = {
 	token: null,

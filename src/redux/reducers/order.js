@@ -8,7 +8,7 @@ import {
 	GET_ORDERS_FAILED,
 } from '../actions/actionTypes';
 
-import { updateObject } from '../utility';
+import { updateObject } from '../../helpers/updateObject';
 
 const initialState = {
 	orders: [],
