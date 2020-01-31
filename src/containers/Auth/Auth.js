@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { auth } from '../../redux/actions/auth';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
+import { updateObject } from '../../helpers/updateObject';
+import { checkValidity } from '../../helpers/validation';
 
 class Auth extends Component {
 	state = {
@@ -42,50 +44,17 @@ class Auth extends Component {
 		isSignUp: true,
 	};
 
-	checkValidity(value, rules) {
-		let isValid = true;
-		if (!rules) {
-			return true;
-		}
-
-		if (rules.required) {
-			isValid = value.trim() !== '' && isValid;
-		}
-
-		if (rules.minLength) {
-			isValid = value.length >= rules.minLength && isValid;
-		}
-
-		if (rules.maxLength) {
-			isValid = value.length <= rules.maxLength && isValid;
-		}
-
-		if (rules.isEmail) {
-			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-			isValid = pattern.test(value) && isValid;
-		}
-
-		if (rules.isNumeric) {
-			const pattern = /^\d+$/;
-			isValid = pattern.test(value) && isValid;
-		}
-
-		return isValid;
-	}
-
 	inputChangedHandler = (event, inputIdentifier) => {
-		const updatedControls = {
-			...this.state.controls,
-			[inputIdentifier]: {
-				...this.state.controls[inputIdentifier],
+		const updatedControls = updateObject(this.state.controls, {
+			[inputIdentifier]: updateObject(this.state.controls[inputIdentifier], {
 				value: event.target.value,
-				valid: this.checkValidity(
+				valid: checkValidity(
 					event.target.value,
 					this.state.controls[inputIdentifier].validation
 				),
 				touched: true,
-			},
-		};
+			}),
+		});
 		this.setState({ controls: updatedControls });
 	};
 
