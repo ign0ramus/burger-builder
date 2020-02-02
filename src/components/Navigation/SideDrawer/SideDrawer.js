@@ -1,20 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import classes from './SideDrawer.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
-import Aux from '../../../hoc/Aux/Aux';
+import classes from './SideDrawer.css';
 
-const sideDrawer = props => {
+const SideDrawer = props => {
 	let attachedClasses = [classes.SideDrawer, classes.Close];
-	if (props.open) {
+	if (props.isOpen) {
 		attachedClasses = [classes.SideDrawer, classes.Open];
 	}
 	return (
-		<Aux>
-			<Backdrop show={props.open} clicked={props.closed} />
-			<div className={attachedClasses.join(' ')} onClick={props.closed}>
+		<React.Fragment>
+			<Backdrop show={props.isOpen} clicked={props.onClose} />
+			<div className={attachedClasses.join(' ')} onClick={props.onClose}>
 				<div className={classes.Logo}>
 					<Logo />
 				</div>
@@ -22,8 +22,19 @@ const sideDrawer = props => {
 					<NavigationItems isAuth={props.isAuth} />
 				</nav>
 			</div>
-		</Aux>
+		</React.Fragment>
 	);
 };
 
-export default sideDrawer;
+SideDrawer.propTypes = {
+	isOpen: PropTypes.bool,
+	onClose: PropTypes.func.isRequired,
+	isAuth: PropTypes.bool,
+};
+
+SideDrawer.defaultProps = {
+	isOpen: false,
+	isAuth: false,
+};
+
+export default SideDrawer;

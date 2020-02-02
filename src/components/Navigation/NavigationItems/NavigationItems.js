@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
+import classes from './NavigationItems.css';
 
-const navigationItems = ({ isAuth }) => (
+const NavigationItems = ({ isAuth }) => (
 	<ul className={classes.NavigationItems}>
 		{isAuth && (
 			<React.Fragment>
@@ -21,4 +22,12 @@ const navigationItems = ({ isAuth }) => (
 	</ul>
 );
 
-export default navigationItems;
+NavigationItems.propTypes = {
+	isAuth: PropTypes.bool,
+};
+
+NavigationItems.defaultProps = {
+	isAuth: false,
+};
+
+export default NavigationItems;
