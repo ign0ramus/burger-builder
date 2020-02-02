@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import classes from './Layout.css';
@@ -37,6 +38,14 @@ class Layout extends Component {
 		);
 	}
 }
+
+Layout.propTypes = {
+	isAuth: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+	isAuth: false,
+};
 
 const mapStateToProps = state => ({
 	isAuth: state.auth.token !== null,
