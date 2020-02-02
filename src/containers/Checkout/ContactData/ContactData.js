@@ -8,7 +8,7 @@ import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import { purchase } from '../../../redux/actions';
-import { updateObject } from '../../../helpers/updateObject';
+import updateObject from '../../../helpers/updateObject';
 import { checkValidity } from '../../../helpers/validation';
 
 class ContactData extends Component {

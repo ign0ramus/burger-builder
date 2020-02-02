@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { auth } from '../../redux/actions/auth';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
-import { updateObject } from '../../helpers/updateObject';
+import updateObject from '../../helpers/updateObject';
 import { checkValidity } from '../../helpers/validation';
 
 class Auth extends Component {
