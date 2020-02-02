@@ -1,4 +1,5 @@
 import React, { Component, lazy, Suspense } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
@@ -37,6 +38,10 @@ class App extends Component {
 		);
 	}
 }
+
+App.propTypes = {
+	onTryAutoSignUp: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
 	onTryAutoSignUp: () => dispatch(authCheckState()),
