@@ -17,7 +17,7 @@ import {
 import axios from '../../axios-orders';
 import classes from './BurgerBuilder.css';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 	state = {
 		purchasing: false,
 	};
@@ -69,7 +69,7 @@ class BurgerBuilder extends Component {
 
 		if (this.props.ings) {
 			burger = (
-				<Aux>
+				<React.Fragment>
 					<Burger ingredients={this.props.ings} />
 					<BuildControls
 						ingredientAdded={this.props.onIngredientAdd}
@@ -79,7 +79,7 @@ class BurgerBuilder extends Component {
 						ordered={this.purchaseHandler}
 						price={this.props.totalPrice}
 					/>
-				</Aux>
+				</React.Fragment>
 			);
 			orderSummary = (
 				<OrderSummary
