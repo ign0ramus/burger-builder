@@ -83,7 +83,7 @@ export class BurgerBuilder extends Component {
 			<React.Fragment>
 				<Modal
 					show={this.state.isPurchasing}
-					modalClosed={this.purchaseCancelHandler}
+					onClose={this.purchaseCancelHandler}
 				>
 					{Boolean(this.props.ings) && (
 						<OrderSummary
