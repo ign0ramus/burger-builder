@@ -113,6 +113,7 @@ ContactData.propTypes = {
 	totalPrice: PropTypes.number.isRequired,
 	isLoading: PropTypes.bool,
 	userId: PropTypes.string.isRequired,
+	onOrder: PropTypes.func.isRequired,
 };
 
 ContactData.defaultProps = {
