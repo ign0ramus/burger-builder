@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 import Order from '../../components/Order/Order';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { getOrders } from '../../redux/actions';
-import { connect } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { Redirect } from 'react-router-dom';
 
 class Orders extends Component {
 	componentDidMount() {
@@ -17,10 +19,9 @@ class Orders extends Component {
 			return <Redirect to='/auth' />;
 		}
 
-		if (this.props.isLoading) {
-			return <Spinner />;
-		}
-		return (
+		return this.props.isLoading ? (
+			<Spinner />
+		) : (
 			<div>
 				{this.props.orders.map(order => (
 					<Order
@@ -33,6 +34,18 @@ class Orders extends Component {
 		);
 	}
 }
+
+Orders.propTypes = {
+	orders: PropTypes.array,
+	isLoading: PropTypes.bool,
+	isAuth: PropTypes.bool,
+};
+
+Orders.defaultProps = {
+	orders: [],
+	isLoading: false,
+	isAuth: false,
+};
 
 const mapStateToProps = state => ({
 	orders: state.order.orders,
