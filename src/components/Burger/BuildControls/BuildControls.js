@@ -39,11 +39,10 @@ BuildControls.propTypes = {
 	onIngredientAdd: PropTypes.func.isRequired,
 	onPurchase: PropTypes.func.isRequired,
 	isPurchasable: PropTypes.bool,
-	disabled: PropTypes.bool,
+	disabled: PropTypes.object.isRequired,
 };
 
 BuildControls.defaultProps = {
-	disabled: false,
 	isPurchasable: false,
 };
 

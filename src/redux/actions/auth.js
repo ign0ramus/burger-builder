@@ -32,6 +32,7 @@ export const auth = (email, password, isSignUp) => dispatch => {
 		'';
 	const signInUrl =
 		'';
+
 	axios
 		.post(isSignUp ? signUpUrl : signInUrl, {
 			email,

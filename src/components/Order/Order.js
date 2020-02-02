@@ -40,7 +40,7 @@ const Order = props => {
 	);
 };
 
-Order.PropTypes = {
+Order.propTypes = {
 	ingredients: PropTypes.object.isRequired,
 	price: PropTypes.number.isRequired,
 };

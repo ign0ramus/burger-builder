@@ -106,7 +106,7 @@ export class BurgerBuilder extends Component {
 BurgerBuilder.propTypes = {
 	ings: PropTypes.object,
 	totalPrice: PropTypes.number.isRequired,
-	error: PropTypes.object,
+	error: PropTypes.bool,
 	isAuth: PropTypes.bool,
 	onIngredientAdd: PropTypes.func.isRequired,
 	onIngredientRemove: PropTypes.func.isRequired,
@@ -116,7 +116,7 @@ BurgerBuilder.propTypes = {
 
 BurgerBuilder.defaultProps = {
 	ings: null,
-	error: null,
+	error: false,
 	isAuth: false,
 };
 
