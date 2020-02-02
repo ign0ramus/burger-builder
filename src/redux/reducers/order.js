@@ -13,13 +13,13 @@ import updateObject from '../../helpers/updateObject';
 const initialState = {
 	orders: [],
 	isLoading: false,
-	purchased: false,
+	isPurchased: false,
 };
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case PURCHASE_INIT:
-			return updateObject(state, { purchased: false });
+			return updateObject(state, { isPurchased: false });
 		case PURCHASE_SUCCESS:
 			return purchaseSuccess(state, action);
 		case PURCHASE_FAILED:
@@ -44,7 +44,7 @@ const purchaseSuccess = (state, action) =>
 			...action.payload.data,
 			id: action.payload.id,
 		}),
-		purchased: true,
+		isPurchased: true,
 	});
 
 const getOrdersSuccess = (state, action) =>

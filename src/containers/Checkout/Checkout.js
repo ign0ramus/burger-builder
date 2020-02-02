@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 
@@ -14,7 +16,7 @@ class Checkout extends Component {
 	};
 
 	render() {
-		if (!this.props.ings || this.props.purchased) {
+		if (!this.props.ings || this.props.isPurchased) {
 			return <Redirect to='/' />;
 		}
 
@@ -30,7 +32,7 @@ class Checkout extends Component {
 					checkoutContinued={this.checkoutContinuedHandler}
 				/>
 				<Route
-					path={this.props.match.path + '/contact-data'}
+					path={`${this.props.match.path}/contact-data`}
 					render={props => <ContactData {...props} />}
 				/>
 			</React.Fragment>
@@ -38,10 +40,22 @@ class Checkout extends Component {
 	}
 }
 
+Checkout.propTypes = {
+	ings: PropTypes.object,
+	isPurchased: PropTypes.bool,
+	isAuth: PropTypes.bool,
+};
+
+Checkout.defaultProps = {
+	ings: null,
+	isPurchased: false,
+	isAuth: false,
+};
+
 const mapStateToProps = state => {
 	return {
 		ings: state.burgerBuilder.ingredients,
-		purchased: state.order.purchased,
+		isPurchased: state.order.isPurchased,
 		isAuth: state.auth.token !== null,
 	};
 };

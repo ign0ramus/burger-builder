@@ -106,7 +106,7 @@ Auth.propTypes = {
 
 Auth.defaultProps = {
 	isLoading: false,
-	error: {},
+	error: null,
 	isAuth: false,
 };
 
