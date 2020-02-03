@@ -1,12 +1,11 @@
 # Burger builder
 Funny project for building and ordering burgers. Project with authentication, users database and so on.
 
-Frontend: 
-On master branch:
+## Frontend:<br>
+### On master branch:
   - React (with stateful components (e.g. classes))
   - Redux
-<br>
-On hooks branch:
+### On hooks branch:<br>
   - React (only hooks)
   - React context instead of Redux
 
@@ -14,4 +13,4 @@ On hooks branch:
 - Axios
 - Jest & Enzyme (several components are covered with tests)
 
-Backend: Google Firebase
+## Backend: Google Firebase
