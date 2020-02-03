@@ -12,6 +12,6 @@ Funny project for building and ordering burgers. Project with authentication, us
   - Redux
 ### On hooks branch:<br>
   - React (only hooks)
-  - React context instead of Redux
+  - React Context instead of Redux
 
 ## Backend: Google Firebase
