@@ -31,6 +31,10 @@ class ContactData extends Component {
 		isFormValid: false,
 	};
 
+	componentDidMount() {
+		window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+	}
+
 	onSubmit = event => {
 		event.preventDefault();
 		const formData = {};
