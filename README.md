@@ -10,6 +10,7 @@ Funny project for building and ordering burgers. Project with authentication, us
 ### On master branch:
   - React (with stateful components (e.g. classes))
   - Redux
+  - Redux Saga
 ### On hooks branch:<br>
   - React (only hooks)
   - React Context instead of Redux
