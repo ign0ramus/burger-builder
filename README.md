@@ -5,6 +5,7 @@ Frontend:
 On master branch:
   - React (with stateful components (e.g. classes))
   - Redux
+<br>
 On hooks branch:
   - React (only hooks)
   - React context instead of Redux
