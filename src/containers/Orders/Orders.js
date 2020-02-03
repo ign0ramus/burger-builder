@@ -11,7 +11,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Orders extends Component {
 	componentDidMount() {
-		this.props.onGetOrders();
+		this.props.onGetOrders(this.props.token, this.props.userId);
 	}
 
 	render() {
@@ -39,6 +39,8 @@ Orders.propTypes = {
 	orders: PropTypes.array,
 	isLoading: PropTypes.bool,
 	isAuth: PropTypes.bool,
+	token: PropTypes.string.isRequired,
+	userId: PropTypes.string.isRequired,
 };
 
 Orders.defaultProps = {
@@ -51,10 +53,12 @@ const mapStateToProps = state => ({
 	orders: state.order.orders,
 	isLoading: state.order.isLoading,
 	isAuth: state.auth.token !== null,
+	token: state.auth.token,
+	userId: state.auth.userId,
 });
 
 const mapDispatchToProps = dispatch => ({
-	onGetOrders: () => dispatch(getOrders()),
+	onGetOrders: (token, userId) => dispatch(getOrders(token, userId)),
 });
 
 export default connect(

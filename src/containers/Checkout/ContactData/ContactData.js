@@ -49,7 +49,7 @@ class ContactData extends Component {
 			orderData: formData,
 			userId: this.props.userId,
 		};
-		this.props.onOrder(order);
+		this.props.onOrder(order, this.props.token);
 	};
 
 	inputChangedHandler = (event, inputIdentifier) => {
@@ -118,6 +118,7 @@ ContactData.propTypes = {
 	isLoading: PropTypes.bool,
 	userId: PropTypes.string.isRequired,
 	onOrder: PropTypes.func.isRequired,
+	token: PropTypes.string.isRequired,
 };
 
 ContactData.defaultProps = {
@@ -130,11 +131,12 @@ const mapStateToProps = state => {
 		totalPrice: state.burgerBuilder.totalPrice,
 		isLoading: state.order.isLoading,
 		userId: state.auth.userId,
+		token: state.auth.token,
 	};
 };
 
 const mapDispatchToProps = dispatch => ({
-	onOrder: data => dispatch(purchase(data)),
+	onOrder: (data, token) => dispatch(purchase(data, token)),
 });
 
 export default connect(
