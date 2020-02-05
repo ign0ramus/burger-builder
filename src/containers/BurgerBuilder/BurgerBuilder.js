@@ -20,10 +20,11 @@ import classes from './BurgerBuilder.css';
 
 export const BurgerBuilder = props => {
 	const [isPurchasing, setIsPurchasing] = useState(false);
+	const { onGetIngredients } = props;
 
 	useEffect(() => {
-		props.onGetIngredients();
-	}, []);
+		onGetIngredients();
+	}, [onGetIngredients]);
 
 	const isPurchasable = () => {
 		const sum = Object.keys(props.ings)

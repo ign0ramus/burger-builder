@@ -5,9 +5,11 @@ import { logout } from '../../../redux/actions/auth';
 import { Redirect } from 'react-router-dom';
 
 const Logout = props => {
+	const { onLogout } = props;
+
 	useEffect(() => {
-		props.onLogout();
-	}, []);
+		onLogout();
+	}, [onLogout]);
 
 	return <Redirect to='/auth' />;
 };

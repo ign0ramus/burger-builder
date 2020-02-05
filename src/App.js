@@ -14,9 +14,11 @@ const AuthComponent = lazy(() => import('./containers/Auth/Auth'));
 const LogoutComponent = lazy(() => import('./containers/Auth/Logout/Logout'));
 
 const App = props => {
+	const { onTryAutoSignUp } = props;
+
 	useEffect(() => {
-		props.onTryAutoSignUp();
-	}, []);
+		onTryAutoSignUp();
+	}, [onTryAutoSignUp]);
 
 	return (
 		<Layout>

@@ -10,9 +10,11 @@ import { getOrders } from '../../redux/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 const Orders = props => {
+	const { onGetOrders } = props;
+
 	useEffect(() => {
-		props.onGetOrders(props.token, props.userId);
-	}, []);
+		onGetOrders(props.token, props.userId);
+	}, [onGetOrders]);
 
 	if (!props.isAuth) {
 		return <Redirect to='/auth' />;
