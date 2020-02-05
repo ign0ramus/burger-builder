@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../../redux/actions/auth';
 import { Redirect } from 'react-router-dom';
 
-class Logout extends Component {
-	componentDidMount() {
-		this.props.onLogout();
-	}
+const Logout = props => {
+	useEffect(() => {
+		props.onLogout();
+	}, []);
 
-	render() {
-		return <Redirect to='/auth' />;
-	}
-}
+	return <Redirect to='/auth' />;
+};
 
 Logout.propTypes = {
 	onLogout: PropTypes.func.isRequired,

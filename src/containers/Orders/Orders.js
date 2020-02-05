@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -9,31 +9,29 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { getOrders } from '../../redux/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class Orders extends Component {
-	componentDidMount() {
-		this.props.onGetOrders(this.props.token, this.props.userId);
+const Orders = props => {
+	useEffect(() => {
+		props.onGetOrders(props.token, props.userId);
+	}, []);
+
+	if (!props.isAuth) {
+		return <Redirect to='/auth' />;
 	}
 
-	render() {
-		if (!this.props.isAuth) {
-			return <Redirect to='/auth' />;
-		}
-
-		return this.props.isLoading ? (
-			<Spinner />
-		) : (
-			<div>
-				{this.props.orders.map(order => (
-					<Order
-						key={order.id}
-						ingredients={order.ingredients}
-						price={order.price}
-					/>
-				))}
-			</div>
-		);
-	}
-}
+	return props.isLoading ? (
+		<Spinner />
+	) : (
+		<div>
+			{props.orders.map(order => (
+				<Order
+					key={order.id}
+					ingredients={order.ingredients}
+					price={order.price}
+				/>
+			))}
+		</div>
+	);
+};
 
 Orders.propTypes = {
 	orders: PropTypes.array,
