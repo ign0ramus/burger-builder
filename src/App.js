@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
@@ -13,31 +13,29 @@ const OrdersComponent = lazy(() => import('./containers/Orders/Orders'));
 const AuthComponent = lazy(() => import('./containers/Auth/Auth'));
 const LogoutComponent = lazy(() => import('./containers/Auth/Logout/Logout'));
 
-class App extends Component {
-	componentDidMount() {
-		this.props.onTryAutoSignUp();
-	}
+const App = props => {
+	useEffect(() => {
+		props.onTryAutoSignUp();
+	}, []);
 
-	render() {
-		return (
-			<Layout>
-				<Suspense fallback={<Spinner />}>
-					<Switch>
-						<Route path='/checkout' component={CheckoutComponent} />
-						<Route path='/orders' component={OrdersComponent} />
-						<Route path='/auth' component={AuthComponent} />
-						<Route path='/logout' component={LogoutComponent} />
-						<Route
-							path='/'
-							exact
-							render={props => <BurgerBuilder {...props} />}
-						/>
-					</Switch>
-				</Suspense>
-			</Layout>
-		);
-	}
-}
+	return (
+		<Layout>
+			<Suspense fallback={<Spinner />}>
+				<Switch>
+					<Route path='/checkout' component={CheckoutComponent} />
+					<Route path='/orders' component={OrdersComponent} />
+					<Route path='/auth' component={AuthComponent} />
+					<Route path='/logout' component={LogoutComponent} />
+					<Route
+						path='/'
+						exact
+						render={props => <BurgerBuilder {...props} />}
+					/>
+				</Switch>
+			</Suspense>
+		</Layout>
+	);
+};
 
 App.propTypes = {
 	onTryAutoSignUp: PropTypes.func.isRequired,

@@ -1,47 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Modal from '../../components/UI/Modal/Modal';
 
 const withErrorHandler = (WrappedComponent, axios) => {
-	return class extends Component {
-		state = {
-			error: null,
-			isReady: false,
-		};
+	return props => {
+		const [error, setError] = useState();
 
-		componentDidMount() {
-			this.resInterceptor = axios.interceptors.response.use(
-				res => res,
-				error => {
-					this.setState({ error });
-					return Promise.reject(error);
-				}
-			);
-			this.setState({ isReady: true });
-		}
-
-		componentWillUnmount() {
-			axios.interceptors.response.eject(this.resInterceptor);
-		}
-
-		errorConfirmedHandler = () => {
-			this.setState({ error: null });
-		};
-
-		render() {
-			if (!this.state.isReady) {
-				return null;
+		const resInterceptor = axios.interceptors.response.use(
+			res => res,
+			error => {
+				setError(error);
+				return Promise.reject(error);
 			}
+		);
 
-			return (
-				<React.Fragment>
-					<Modal show={this.state.error} onClose={this.errorConfirmedHandler}>
-						{this.state.error ? this.state.error.message : null}
-					</Modal>
-					<WrappedComponent {...this.props} />
-				</React.Fragment>
-			);
-		}
+		useEffect(() => () => axios.interceptors.response.eject(resInterceptor), [
+			resInterceptor,
+		]);
+
+		const errorConfirmedHandler = () => {
+			setError(null);
+		};
+
+		return (
+			<React.Fragment>
+				<Modal show={error} onClose={errorConfirmedHandler}>
+					{error ? error.message : null}
+				</Modal>
+				<WrappedComponent {...props} />
+			</React.Fragment>
+		);
 	};
 };
 
