@@ -9,10 +9,11 @@ Funny project for building and ordering burgers. Project with authentication, us
 
 ### On master branch:
   - React (with stateful components (e.g. classes))
+### On hooks branch:<br>
+  - React (only functional components with hooks)
+  
+ <br>
   - Redux
   - Redux Saga
-### On hooks branch:<br>
-  - React (functional components with hooks)
-  - React Hooks instead of Redux
 
 ## Backend: Google Firebase
