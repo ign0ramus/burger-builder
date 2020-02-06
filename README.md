@@ -13,7 +13,7 @@ Funny project for building and ordering burgers. Project with authentication, us
   - React (only functional components with hooks)
   
  <br>
-  - Redux
+  - Redux<br>
   - Redux Saga
 
 ## Backend: Google Firebase
